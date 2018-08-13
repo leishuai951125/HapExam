@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hbi.demo.mapper.OmOrderHeadersMapper">
+    <resultMap id="BaseResultMap" type="hbi.demo.dto.OmOrderHeaders">
+        <result column="HEADER_ID" property="headerId" jdbcType="DECIMAL" />
+        <result column="ORDER_NUMBER" property="orderNumber" jdbcType="VARCHAR" />
+        <result column="COMPANY_ID" property="companyId" jdbcType="DECIMAL" />
+        <result column="ORDER_DATE" property="orderDate" jdbcType="DATE" />
+        <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+        <result column="CUSTOMER_ID" property="customerId" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <!--<select id="selectHeaderById" parameterType="Long" resultType="OrderHeadersOnLines">-->
+            <!--select order_number orderNumber,company_name companyName ,customer_name customerName,-->
+            <!--order_date orderDate ,order_status orderStatus,-->
+            <!--sum(orderd_quantity*unit_selling_price) sumPrice-->
+            <!--from hap_org_companys hoc ,hap_om_order_lines hool ,hap_om_order_headers hooh,hap_ar_customers hac ,hap_inv_inventory_items hiii-->
+            <!--where hoc.COMPANY_ID=hool.COMPANY_ID and hac.CUSTOMER_ID=hooh.CUSTOMER_ID AND-->
+            <!--hooh.HEADER_ID=hool.HEADER_ID and hool.INVENTORY_ITEM_ID=hiii.INVENTORY_ITEM_ID-->
+            <!--GROUP BY hooh.HEADER_ID-->
+    <!--</select>-->
+
+</mapper>

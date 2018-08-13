@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个仿jquery选择器的函数,同时可以为选中的元素添加自定义的方法</title>
+    <script>
+
+        function f2() {
+            this.innerHTML += "123445";  //this指向调用他的对象。默认是window对象
+            return this;
+        }
+
+        /**
+         * 用法举例 $("#d1").show("这是h1里面的内容").show2()
+         * @param v
+         * @returns {*}
+         */
+        $ = function (v) {
+            if (v.charAt(0) == "#") {   //id选择器
+                sss = v.substring(1, v.length)//截取除首字母外的字符串
+                var k = document.getElementById(sss);
+                k.show = function (s) {  //给k指定一个自定义的函数
+                    this.innerHTML += '<h3>' + s + '</h3>'
+                    return this;//this指k
+                }
+                k.show2 = f2    //给k指定一个自定义的函数，另一种写法
+                return k;
+            }
+             if (v.charAt(0) == ".") {//class选择器
+                // alert(1)
+                sss = v.substring(1, v.length)//截取除首字母外的字符串
+                var k = document.getElementsByClassName(sss)
+                for(i=0;i<k.length;i++){
+                    k[i].show=f3;
+                }
+                return k;
+            }
+        }
+
+        function f3() {
+            var sty=this.style
+            // sty.backColor='red';
+            sty.width='600px'
+            sty.height='300px'
+            return this;
+        }
+
+        function $$(v) {//与$功能完全相同
+            var k=$(v)
+            return k
+        }
+
+        function test1() {
+            $("#d1").show("这是h3里面的内容").show2()
+        }
+        function test2() {
+            $(".d3")[0].show()
+        }
+        function test3() {
+            $("d1").show2();//这是一个错误的测试
+        }
+
+    </script>
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            background: #b0c3e3;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 30px;text-align: center;line-height: 30px">
+    <input type="button" value="测试1" onclick="test1()">
+    <input type="button" value="测试2" onclick="test2()">
+    <input type="button" value="测试3" onclick="test3()">
+</div>
+<div id="d1"></div>
+<div class="d3"></div>
+</body>
+</html>
